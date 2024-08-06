@@ -46,9 +46,9 @@ There are also free controllers that can be assigned to the new modules.
 
 ## Usage
 
-Vorab: Die Dokumentation von Open Stage Control nennt eine Definitionsdatei im Json Format ein "session file". Ich finde diesen Begiff verwirrend und nenne res deshalb in dieser Dokumentation Definitionsdatei.
+First of all: The Open Stage Control documentation calls a definition file in JSON format a "session file". I find this term confusing and therefore call it a definition file in this documentation.
 
-Laden Sie also die Definitionsdatei VCVctl.json in Open Stage Control und stellen Sie folgende Parameter ein:
+So load the definition file VCVctl.json into Open Stage Control and set the following parameters:
 
 - send: 127.0.0.1:7002
 - midi: openStage:0,0
@@ -56,92 +56,88 @@ Laden Sie also die Definitionsdatei VCVctl.json in Open Stage Control und stelle
 
 ![](OpenStage-Settings.jpg)
 
-Starten Sie dann den Server dann über den Play-Button. Sie können die Elemente jetzt über das Open Stage Control Fenster bedienen oder einen Browser (auf einem anderen Tablet) starten und die http-Adresse öffen. Die Adresse wird nach dem Start im Log von Open Stage Control ausgegeben. Die in der Definitionsdatei enthaltenen grafischen Elemente sind für ein 10 Zoll Tablet im Vollbildmodus optimiert. Der Vollbildmodus kann über das Menu ganz oben links (drei Punkte) gestartet werden.
+Then start the server using the play button. You can now use the control widgets in the Open Stage Control window or you can start a browser (on a tablet) and open the http address. The address is displayed in the Open Stage Control log after startup. The graphic elements contained in the definition file are optimized for a 10-inch tablet in full-screen mode. Full-screen mode can be started using the menu at the top left (three dots).
 
-Starten Sie dann VCV-Rack und laden die den Patch VCVctl.vcv.
+Then start VCV-Rack and load the patch VCVctl.vcv.
 
 ## VCV rack patch.
 
-.. does next to nothing at first and has to be filled with life. It is intended as a template for your own patches.
+.. does next to nothing at first and has to be filled with life. It is intended as a basic patch for your own patches.
 
-Der Patch enthält mehrere Sektionen, die mit Texten markiert. Jede Sektion verwendet eine andere Farbe für diese Texte, dich sich auch in der Oberfläche von Open Stage Control wiederfindet. Die ersten fünf Sektionen sind alle gleich aufgebaut und diesen dazu, eine Synth-Stimme durch das Hinzufügen von Modulen zu bauen. Zur Steuerung enthält jede Section (im wesentlichen) folgende Module:
+The patch contains several sections marked with texts. Each section uses a different color for these texts, which can also be found in the Open Stage Control interface. The first five sections are all structured in the same way and are used to build a synth voice by adding modules. For control purposes, each section contains (essentially) the following modules:
 
-- KEY-SEQ als Sequenzer
-- 8FACE um Presets speichern
-- OCT um die Octave einzustellen
-- KNOB 5 zur Steuerung
-- MindMeld PatchMaster, um Pan, Reverb, Chorus und Delay einzustellen
-- MindMeld MasterChannel, um den Ausgabepegel anzuzeigen und als Verbindungselemet zum Mixer.
-- BGA VU um den Gesamtpegel anzuzeigen (x)
-- HOT TUNA um die gespielten Noten anzuzeigen (x)
-- SCOPE um die Ausgangswelle anzuzeigen (x)
-
-Die mit (x) markierten Module werden nicht unbedingt gebraucht, sind aber ganz nützlich.
+- KEY-SEQ as sequencer
+- 8FACE to save presets
+- OCT to set the octave
+- KNOB 5 for control
+- MindMeld PatchMaster to adjust pan, reverb, chorus and delay
+- MindMeld MasterChannel to display the output level and as a connection element to the mixer.
+- BGA VU to display the overall level (x)
+- HOT TUNA to display the notes played (x)
+- SCOPE to display the output wave (x)
+- 
+The modules marked with (x) are not necessarily needed, but are quite useful.
 
 ![](VCV-Module-SynthSection.jpg)
 
-Section-2 hat die Besonderheit, dass 3 Oct Module vorhanden sind, um die Oktave für verschiedene VCOs unterschiedlich einzustellen. Wenn das auch für andere Sections benötigt wird, sind diese analog zu erweitern. Neben den Synth-Sections 1-5 gibt es die Drum-Section, die statt eines Sequenzers einen 8 Kanal Trigger-Sequenzer enthält und auch schon einige Drums.
-Die Section MIX enthält den Mixer, Effekte und Steuerelemente.
+Section 2 has the special feature that it has 3 OCT modules to set the octave for different VCOs. If this is also required for other sections, these can be expanded in the same way. In addition to the synth sections 1-5, there is the drum section, which contains an 8-channel trigger sequencer instead of a sequencer and also some drums. The MIX section contains the mixer, effects and control elements.
 
-Mit den blauen Buttons von Open Stage Control können Sie die Module in VCV Rack verschieben, um so zu einer bestimmten Sectionen zu gelangen. Der oberste Button bietet die unteren Buttons in einem Menü an, wenn sie (durch das Keyboard) verdeckt sind.
+The blue buttons in Open Stage Control allow you to move the modules in VCV Rack to access a specific section. The top button offers the lower buttons in a menu when they are hidden (by the keyboard).
 
 ![](OpenStage-Sections.jpg)
 
-Drücken Sie den Button MIX, um in die Mixer Section zu wechseln.
+Now press the MIX button to switch to the mixer section.
 
 ![](VCV-Module-MixSection.jpg)
 
-Hier können Sie den Audio-Ausgang im Modul AUDIO einzustellen (1). Dann ist es ganz wichtig, das MIDI device in den Modulen MIDI->CV und MIDI-CAT  auf "openStage:midi_out" einzustellen (2)(3)(4). Wenn Sie nicht mit dem MIDI Keyboard von Open Stage Control arbeiten wollen, dann können sie für MIDI->CV auch andere Geräte einstellen. KEY-SEQ arbeitet mit zwei Keyboards: eines für die Noteneingabe (4) und eines für die Steuerung (3).
+Here you can set the audio output in the AUDIO module (1) for your soundcard. Then it is very important to set the MIDI device in the MIDI->CV and MIDI-CAT modules to "openStage:midi_out" (2)(3)(4). If you do not want to work with the MIDI keyboard from Open Stage Control, you can also set other devices for MIDI->CV. KEY-SEQ works with two keyboards: one for note input (4) and one for control (3).
 
-Klicken Sie dann auf das Werte-Display in Open Stage Control.
+Then click on the values ​​display in Open Stage Control.
 
 ![](OpenStage-valuedisp.jpg)
 
-Dieses ist über MIDI-CAT mit dem SEND Button des Moduls OSC'ELOT verbunden. Das Ein- und Ausschalten von OSC'ELOT bewirkt, dass sämtliche Einstelllungen des Moduls über OSC an Open Stage Control gesendet werden. Danach sind die Elemente mit Beschriftungen aus VCV Rack versehen.
+This is connected to the SEND button of the OSC'ELOT module via MIDI-CAT. Switching OSC'ELOT on and off causes all of the module's settings to be sent to Open Stage Control via OSC. The elements are then labeled with the module names and parameter names of VCV Rack.
 
-Wenn Sie neue Knob-Controller über OSC'ELOT zuweisen oder welche entfernen, dann werden diese in der Regel auch zu Open Stage Control übertragen. Wenn jedoch die Bezeichnungen von Reglern in VCV Rack geändert werden (zum Beispiel der Name eines Kanals in MixMaster), dann passiert das nicht. In diesem Fall können alle Beschriftungen durch diesen Refesh-Button neu übertragen werden.
+If you assign or remove new knob controllers via OSC'ELOT, these will usually be transferred to Open Stage Control. However, if the names of parameters are changed in VCV Rack (for example, the name of a channel in MixMaster), this will not happen. In this case, all labels can be re-transferred using this refresh button.
 
-## Module hinzufügen und eine Stimme erstellen
+## Add modules and create a voice
 
-Wechseln Sie hierzu in eine (freie) Synth-Section (Am Anfang sind bis auf die DRUMs alle frei).
+To do this, switch to a (free) synth section (at the beginning everything is free except for the DRUMS)
 
-
-- erstellen Sie mit den gewünschen Modulen die Stimme.
-- verbinden Sie OCT/OUT mit dem V/OCT Eingang der hinzugefügen Module (1)
-- verbinden Sie KEY-SEQ/Gate mit dem GATE Eingang der hinzugefügen Module (2)
-- verbinden Sie den Audio Ausgang der Module mit dem MasterChannel/IN Eingang (3) (zwei Kabel für Stereo).
+- Create the voice using the desired modules.
+- Connect OCT/OUT to the V/OCT input of the added modules (1).
+- Connect KEY-SEQ/Gate to the GATE input of the added modules (2).
+- Connect the audio output of the modules to the MasterChannel/IN input (3) (use two cables for stereo).
 
 ![](VCV-SynthSection-Create.jpg)
 
-Jetzt ist sind die Module mit dem KEY-SEQ verbunden und der Ausgang hängt am MixMaster Modul. Als nächstes können Sie eine Sequenz eingeben.
+Now the modules are connected to the KEY-SEQ and the output is connected to the MixMaster module. Next you can enter a sequence.
 
-## Sequenz eingeben
+## Enter a sequence
 
-KEY-SEQ kann über ein oder zwei Keyboards gesteuert werden. Eines dient zur Eingabe von Noten oder beim Drücken von zwei Tasten zur Eingabe eines Kommandos. Das zweite Keyboard dient zu Eingabe von Kommandos und ersetzt somit die zwei-Tasten-Logik. In der Definitionsdatei sind zwei Keyboards für  Open-Stage-Control enthalten.
-
+KEY-SEQ can be controlled using one or two keyboards. One is used to enter notes or to enter a command by pressing two keys. The second keyboard is used to enter commands and thus replaces the two-key logic. The definition file contains two keyboards for Open Stage Control.
 
 ![](OpenStage-OpenKeyboard.jpg)
 
-- Das Keyboard kann über einen Button geöffnet werden (1).
-- In der obersten Reihe werden die Noten der aktuellen Sequenz dargestellt (2).
-- Die Buttons darunter sind den Kommandos von KEY-SEQ zugeordnet (3).
-- Mit den Tasten lassen sich an der aktuellen Position Noten eingeben (4).
-- Über die Pfeile am Rand lässt sich die Oktave ändern (5).
-- Der Button (6) verschiebt das Keyboard nach unten (und auch wieder zurück).
-- Der Button (8) (oder auch (1)) schließt es wieder.
-- Über den Button (7) wird statt des normalen Keyboards ein Grid-Keyboard eingeblendet (und auch wieder aus).
+
+- The keyboard can be opened via a button (1).
+- The top row shows the notes of the current sequence (2).
+- The buttons below are assigned to the KEY-SEQ commands (3).
+- Use the keys of the keyboard below to enter notes at the current position (4).
+- The octave can be changed using the arrows on the edge (5).
+- The button (6) moves the keyboard down (and back again).
+- The button (8) (or (1)) closes it.
+- The button (7) displays (and hides) a grid keyboard instead of the normal keyboard.
 
 ![](OpenStage-GridKeyboard.jpg)
 
-- Noten können über 7 Buttons pro Oktave eingeben werden (1).
-- Es sind nur Noten enthalten, die zur Scale passen.
-- Die Scale kann über ein Menü (2) eingestellt werden.
-- Über die links-rechts Pfeile kann die Anfangsnote eingestellt werden (3).
-- Über die hoch-runter Pfeile kann die Oktave eingestellt werden (4).
+- Notes can be entered using 7 buttons per octave (1).
+- Only notes that fit the scale are included.
+- The scale can be adjusted via a menu (2).
+- The starting note can be set using the left-right arrows (3).
+- The octave can be adjusted using the up-down arrows (4).
 
-Wenn Sie Noten eingegeben haben, dann sollten Sie (am SCOPE zum Beispiel) sehen, dass diese gespielt werden.
-Damit Sie auch was hören, müssen sie den Kanal im Mixer anschalten, indem sie den Button F drücken.
-Über den Regler dahinter kann die Lautstärke eingestellt werden.
+If you have entered notes, you should see (on the SCOPE, for example) that they are being played. To hear something, you have to switch on the channel in the mixer by pressing the F button. The volume can be adjusted using the control behind it.
 
 ![](OpenStage-MiniMixer.jpg)
 
@@ -151,164 +147,178 @@ Damit Sie auch was hören, müssen sie den Kanal im Mixer anschalten, indem sie 
 
 und direkt im noch offenen Keyboard bearbeitet werden (2). Die Sequenz wird auch im unteren Bereich (3) angezeigt, wenn das Keyboard geschlossen ist.
 
-## Zuweisen der Knob-Controller
+## Assigning the Knob Controllers
 
-Schließen Sie das Keyboard, damit alle Regler sichtbar sind. Einige Knob-Controller sind bereits durch den Basispatch belegt (OCT, Pan, Reverb, Chorus, Delay) und können sofort verwendet werden. Die anderen können den neuen Module zugewiesen werden, um diese einzustellen. Dazu sollte das Modul OSC*ELOT in die Section gebracht werden. Das geht am eimfachsten, wenn Open Stage Control mit einem Tablet bedient wird:
+Close the keyboard so that all controls are visible. Some knob controllers are already assigned in the basic patch (OCT, Pan, Reverb, Chorus, Delay) and can be used immediately. 
+The others can be assigned to the new modules to adjust them. To do this, the OSC'ELOT module should be brought into the section. This is easiest if Open Stage Control is operated with a tablet:
 
-- Section MIX auf dem Tablet auswählen.
-- In VCV Rack das Modul OSC'ELOT anklicken und festhalten.
-- Section 1 (oder wenn gewünscht eine andere) auf dem Tablet auswählen.
-- OSC'ELOT mit der Maus an eine freie Position schieben und Taste loslassen.
+- Select Section MIX on the tablet.
+- In VCV Rack, click and hold the OSC'ELOT module.
+- Select Section 1 (or another if desired) on the tablet.
+- Move OSC'ELOT to a free position with the mouse and release the button.
 
-Jetzt können die Knob-Controller den Modulen zugewiesen werden:
+Now the knob controllers can be assigned to the modules:
 
 ![](OpenStage-Assign.jpg)
 
-- Im Modul OSC'ELOT in der Liste der Zuweisungen ganz nach unten scrollen
-- Unmapped anklicken (1).
-- Zuerst Regler in VCV anklicken (2).
-- Dann einen freien Knob-Controller in Open Stage Control anklicken (3). Der Knob-Controller wird dem in VCV Parameter zugewiesen.
-- Nächsten Regler in VCV anklicken und durch Anklicken eines Knob-Controllers in Open Stage Control zuweisen.
-- Wenn alle Regler zugewiesen wurden, in einen freien Bereich in VCV Klicken.
+- In the OSC'ELOT module, scroll down to the bottom of the list of assignments
+- Click Unmapped (1).
+- First click on the controller in VCV (2).
+- Then click on a free knob controller in Open Stage Control (3). The knob controller will be assigned to the parameter in VCV.
+- Click the next control in VCV Rack and assign it by clicking a knob controller in Open Stage Control.
+- When all controls have been assigned, click in a free area in VCV Rack.
 
-Besonders schnell geht das, wenn dazu nicht das Tablet verwendet wird, sondern das von Open Stage Control bereitgestellte Fenster.
-Diesem kann man die Eigenschaft "immer im Vordergrund geben" (bei Linux Mint mit Cinnamon geht das. Für andere OS vielleicht auch) und es dann in die Nähe der VCV Module schieben. Danach muss man nur noch hin und her klicken.
+This is particularly quick if you don't use the tablet, but the window provided by Open Stage Control. You can give this window the property "always on top" (this works with Linux Mint with Cinnamon. Maybe for other OS as well) 
+and then move it near the VCV modules. After that, all you have to do is click back and forth.
 
-Bei der Auswahl der Regler hat es sich als sinnvoll erwiesen, für die gleichen Parameter in jedem Synth-Bereich die gleichen Knob-Controller zu verwenden. CUTOFF könnte zum Beispiel immer auf dem ersten Knob der dritten Reihe liegen und ADSR auf den letzten vier der ersten Reihe. Das erleichtet das intuitive Wiederfinden der Knobs.
+When selecting the controls, it has proven to be a good idea to use the same knob controllers for the same parameters in each synth section. 
+For example, CUTOFF could always be on the first knob of the third row and ADSR on the last four of the first row. This makes it easier to find the knobs intuitively.
 
-Hier kann es nicht schaden, sich mal die Doku von OSC'ELOT anzuschauen.
+Read the OSC'ELOT documentary for more information on mapping controls.
 
-## Presets erstellen
+## Create presets
 
-Nach dem alle Knob-Controller zugewiesen wurden, kann die Stimme über die Controller von Open Stage Control eingestellt werden. Wenn eine gut klingende Einstelllung gefunden wurde, dann kann diese als Preset gespeichert werden. Vorher müssen jedoch die neuen Module dem 8FACE Modul einmalig zugeordnet werden.
+After all knob controllers have been assigned, the voice can be adjusted using the Open Stage Control knob controllers. Once a setting that sounds good has been found, it can be saved as a preset. 
+However, the new modules must first be assigned to the 8FACE module once.
 
-- Im Modul 8FACE den Menüpunkt "Box visible" anklicken, damit die zugeordneten Module mit einem blauen Rahmen markiert werden.
-- Dann den Menüpunkt "Bind module(select multible)" auswählen.
-- Jetzt jedes der neuen Module anklicken, um es zuzuordnen.
+- In the 8FACE module, click on the menu item "Box visible" so that the assigned modules are marked with a blue frame.
+- Then select the menu item "Bind module(select multiple)".
+- Now click on each of the new modules to assign it.
 
-Um eine Einstelllung zu speichern, dann folgende Schritte ausführen
+To save a setting, follow these steps
 
-- Schalter R/W im Module 8FACE auf "W" stellen.
-- Button anklicken, dem den gewünschten Slot anklicken
-- Schalter R/W im Module 8FACE wieder auf "R" stellen.
+- Set the R/W switch in the 8FACE module to "W".
+- Click the button and click on the desired slot
+- Set the R/W switch in the 8FACE module back to "R".
+- 
+For more information read the 8FACE documentation.
 
-Auch hier hilft die Doku von 8FACE weiter.
-
-Wurden einige Presets erstellt, dann können sie mit der Preset-Leiste in Open Stage Control umgeschaltet werden.
+Once some presets have been created, they can be switched using the preset bar in Open Stage Control.
 
 ![](OpenStage-Preset.jpg)
 
-Das Preset wird nicht sofort umgeschaltet, sondern erst am Ende der Sequenz (dafür sorgt das BGA S&H Modul).
+The preset is not switched immediately, but only at the end of the sequence (the BGA S&H module ensures this).
 
-Alleine mit dem Umschalten der Presets und der Sequenzen lässt sich jetzt schon ganz gut Musik machen. Erst recht, wenn weitere Stimmen dazukommen. Die Presets und Sequenzen alle Stimmen können im Reiter "Preset" übersichtlich gesteuert werden.
+You can now make quite good music just by switching between the presets and sequences. This is especially true when more voices are added. The presets and sequences of all voices can be clearly controlled in the "Preset" tab.
 
 ![](OpenStage-PresetTab.jpg)
 
-## Mixerkanal konfigurieren
+## Configure mixer channel
 
-Das Erstellen der Stimme ist damit fast abgeschlossen. Jetzt ist nur noch der Mixerkanal anzupassen.
+The creation of the voice is almost complete. Now all that remains is to adjust the mixer channel.
 
-- Wechseln Sie dazu über den Button MIX in die MIX-Section.
-- Geben Sie dem Kanal einen Namen (zB VC-1).
-- Stellen Sie über das Menü des Kanals die gewünschen Parameter ein.
+- To do this, switch to the MIX section using the MIX button.
+- Give the channel a name (e.g. VC-1).
+- Set the desired parameters via the channel menu.
 
 ![](VCV-Module-MixChannelSetup.jpg)
 
-Mehr dazu ist in der Doku zum Modul MixMaster zu finden.
+More information can be found in the documentation for the MixMaster module.
 
-Zum Schluss klicken Sie den Refesh Button in Open Stage Control, damit der Name in dem Fader angezeigt wird.
+Finally, click the Refesh button in Open Stage Control to display the name in the fader.
 
 ![](OpenStage-Refresh.jpg)
 
 ## Drum-Section
 
-In der Drums-Section gibt es einige Besonderheiten. Sie ist bereits im Basispatch mit (Drum-)Modulen gefüllt. Diese können Sie natürlich durch andere ersetzen und auch den Mixer für diese Module. Achten Sie in diesem Fall darauf, die Module dem 8FACE Modul zuzuweisen und die Parameter über OCS'ELOT den Knob-Controllern von Open Stage Control.
+There are a few special features in the drums section. It is already filled with (drum) modules in the basic patch. 
+You can of course replace these with others and also the mixer for these modules. In this case, make sure to assign the modules to the 8FACE module and the parameters to the knob controllers of Open Stage Control via OCS'ELOT.
 
-Die zweite Besonderheit besteht darin, dass hier der trigSeq verwendet wird, der statt einer Sequenz mehrere Drumpattern bereitstellt. Die Pattern können über Open Stage Control geändert werden. Beim Anklicken des Keyboard-Buttons geht in der Drum-Section ein Grid-Pattern statt eines Keyboards auf.
+The second special feature is that the trigSeq is used here, which provides several drum patterns instead of a sequence. The patterns can be changed via Open Stage Control. When you click the keyboard button, a grid pattern appears in the drum section instead of a keyboard.
 
 ![](OpenStage-DrumGrid.jpg)
 
-Damit das funktioniert, muss nicht nur der Reiter "6-DRUM" aktiv sein, sondern die Section muss über den Schalter aktiviert worden sein (1).
+For this to work, not only must the "6-DRUM" tab be active, but the section must also have been activated via the switch (1).
 
-Das Grid bildet 8 Kanäle über 8 Zeilen ab. Jede Zeile ist einem Kanal von trigSeq zugeordnet (2). Dieser Kanal liefert die Trigger für eine der Drums. Durch Anklicken der Grid-Buttons können die Trigger gesetzt/entfernt werden. Wird eine andere Reihe angeklickt, dann erfolgt die Umschaltung von trigSeq (über eine OSC Message) in einen anderen Kanal.
+The grid displays 8 channels over 8 rows. Each row is assigned to a channel of trigSeq (2). This channel provides the triggers for one of the drums. 
+The triggers can be set/removed by clicking on the grid buttons. If another row is clicked, trigSeq switches to another channel (via an OSC message).
 
-trigSeq bietet 64 Patterns an, zwischen denen umgeschaltet werden kann. Die ersten 11 dieser Patterns können in Open Stage Control über die Pattern-Leiste umgeschaltet werden (3). Hierbei wird sowohl das Play- als auch das Editpattern umgeschaltet. So sind die Auswirkungen einer Änderung sofort hörbar.
+trigSeq offers 64 patterns that can be switched between. The first 11 of these patterns can be switched in Open Stage Control via the pattern bar (3). This switches both the play and edit patterns. This means that the effects of a change can be heard immediately.
 
-Leider sind die Informationen der Patterns nicht so einfach zu Open Stage Control zu übertragen, weil trigSeq beim Umschalten immer nur das Pattern des aktuellen Kanals liefert. Deshalb werden von der Open Stage Control Definitionsdatei beim Wechseln des Patterns alle Kanäle nacheinander durchgeschaltet. Solche Verfahren sind in JavaScript schwer zu synchronisieren. Deshalb wird hier mit einer Wartezeit gearbeitet, die je nach Leistung der JavaScript-Engine eingestellt werden sollte. Mehr dazu is im Abschnitt "Anpassungen" zu finden.
+Unfortunately, the pattern information is not so easy to transfer to Open Stage Control because trigSeq only ever returns the pattern of the current channel when switching. 
+Therefore, when the pattern is changed, the Open Stage Control definition file switches through all channels one after the other. 
+Such processes are difficult to synchronize in JavaScript. Therefore, a waiting time is used here, which should be set depending on the performance of the JavaScript engine. More about this can be found in the "Options and customizations" section.
 
 ## Clock
 
-Die Clock kann über die unterste Zeile der Sidebar konfiguriert werden.
+The clock can be configured via the bottom line of the sidebar.
 
 ![](OpenStage-Clock.jpg)
 
-Der erste Button dient zum Starten und Stoppen der Clock. Der Fader dahinter ist stufenlosen Einstellung vorgesehen und das Menü bietet mehrere vordefinierte Werte an. Der Button ganz rechts löst einen Reset aus.
+The first button is used to start and stop the clock. The fader behind it is intended for continuous adjustment and the menu offers several predefined values. The button on the far right triggers a reset.
 
 ## Autofade
 
-Das Autofade-Panel wird über den Timer-Button (1) aktiviert und bietet drei Timer an, die die Knob-Controller automatisch bewegen können. Jeder Timer ist gleich aufgebaut. Die Unterschiede bestehen nur in den Werten, die eingstellt werden.
+The Autofade panel is activated via the Timer button (1) and offers three timers that can move the knob controllers automatically. Each timer is structured in the same way. The only differences are in the values ​​that are set.
 
 
 ![](OpenStage-Timer.jpg)
 
-Folgende Werte können eingestellt werden:
+The following values ​​can be set:
 
-### Anzahl Durchläufe (2).
+### Number of passes (2).
 
-1x bedeutet, das ein Controller von der Anfangsposition bis zu Endpostion bewegt wird. 2x bedeutet, dass er danach wieder zurück zum Anfang bewegt wird. 3x bedeutet vor, zurück und wieder vor. So geht es weiter bis zu 8x.
+1x means that a controller is moved from the start position to the end position. 2x means that it is then moved back to the start. 3x means forward, back and forward again. It continues like this up to 8x.
 
-### Laufzeit (3).
+### Duration (3).
 
-Dies ist die Laufzeit in Sekunden für einen *kompletten* Durchlauf eines Faders. Wird durch die Anfangs- und Endpostition kein kompletter Durchlauf festgelegt, dann wird diese Zeit proportional herunter gerechnet.
+This is the running time in seconds for a complete run of a fader from 0 to max. If a complete run is not defined by the start and end positions, then this time is reduced proportionally.
 
-### Wartezeit (4)
+### Waiting time (4)
 
-Bevor ein Controller wieder in die andere Richtung bewegt wird, wird die hier eingestellte Zeit abgewartet.
+Before a controller is moved in the other direction again, the time set here is waited for.
 
-### Endpostion (5)
+### End position (5)
 
-Auf diese Position wird der Knob bewegt. Je nachdem ob die der Wert vor oder hinter der aktuellen Position befindet, wird der Knob vorwärts oder rückwärts bewegt.
+The knob is moved to this position. Depending on whether the value is in front of or behind the current position, the knob is moved forwards or backwards.
 
-### Timer starten
+### Start timer
 
-Um einen Timer zu starten muss er zuvor aktiviert werden. Das passiert automatisch, wenn einer seiner Werte geändert wird oder wenn der hintere Button (5) angeklickt wird. Es kann immer nur ein Timer aktiviert werden. Die anderen werden dann deaktiviert. Ist ein Timer aktiv, dann wird das durch einen orangen Rahmen (6) für das Einstellung-Pannel visualisiert.
+To start a timer, it must first be activated. This happens automatically when one of its values ​​is changed or when the button (5) is clicked. Only one timer can be activated at a time. The others are then deactivated. 
+If a timer is active, this is visualized by an orange frame (6) on the settings panel.
 
-Um den aktivierten Timer dann zu starten, ist einfach einer (oder mehrere) der Knob-Controller anzuklicken. Der Timer wird dann beim *Loslassen* gestartet. Da hier auf das Loslassen reagiert wird, besteht die Möglichkeit den Startwert durch Bewegen des Knob-Controllers vorher zu ändern.
+To start the activated timer, simply click on one (or more) of the knob controllers. The timer will then start when you let go. 
+Since the timer reacts to letting go, it is possible to change the starting value beforehand by moving the knob controller.
 
-Knob-Controller, die gerade von einem Timer bewegt werden, werden in der Darstellung geändert (7). Es ist ratsam, diesen Knob-Controller erst wieder anzufassen, wenn der Timer bendet wurde. Aber natürlich ist es möglich, Timer auf anderen Knob-Controllern zu starten, während andere noch laufen. Auch das Wechseln des Timers ist möglich.
+Knob controllers that are currently being moved by a timer will be marked (7). It is advisable not to touch this knob controller again until the timer has ended. But of course it is possible to start timers on other knob controllers while others are still running. 
+It is also possible to use another timer from the sidepanel.
 
 ## Joysticks
 
-Die Joysticks können über den Joystick-Button (1) geöffnet werden.
+The joysticks can be opened using the joystick button (1).
 
 ![](OpenStage-Joystick.jpg)
 
-Es gibt zwei Joysticks A und B (2), die unabhängig voneinander bewegt werden können. Jedem Joystick kann ein Knob-Controller für die X-Achse und einer für die Y-Achse zugewiesen werden. Dazu ist einer der Buttons AX, AY, BX oder BY anzuklicken. Das startet die "Learn" (3) Funktion. Wird danach ein Knob-Controller angeklickt, dann wird dieser der entsprechenden Achse zugewiesen und kann danach über den Joystick bewegt werden. Der Name des Reglers wird in den Button als Beschriftung eingetragen (4).
+There are two joysticks A and B (2) that can be moved independently of each other. Each joystick can be assigned a knob controller for the X-axis and one for the Y-axis. To do this, click on one of the buttons AX, AY, BX or BY. This starts the "Learn" (3) function. If a knob controller is then clicked, it is assigned to the corresponding axis and can then be moved using the joystick. The name of the controller is entered in the button as a label (4).
 
+## Options and customizations
 
-## Optionen und Anpassungen
+### Starting Open Stage Control
 
-### Starten von Open Stage Control
-
-Man kann Open Stage Control jedesmal von Hand starten. Es kann aber auch über ein Script (zB bash unter Linux) zusammen mit VCV Rack gestartet werden. Die notwendigen Optionen können auf der Kommandozeile mitgegeben werden.
+You can start Open Stage Control manually each time. It can also be started using a script (eg bash under Linux) together with VCV Rack. The necessary options can be specified on the command line.
 
     open-stage-control --load /Data/Music/Synth/openStageControl/VCV-SIX-SYNTH.json  --send 127.0.0.1:7002 --osc-port 7000 --midi openStage:0,0 &
 
-wichtig ist, dass die Ports und die MIDI-Einstelllung so übernommen werden. Diese sind auch so im Basispatch eingestellt.
-Wenn nur mit dem Tablet gearbeitet wird, dann kann zusätzlich die Option --no-gui aufgenommen werden, so auf dem PC nur der Server gestartet wird.
+It is important that the ports and MIDI settings are adopted as they are. These are also set in the base patch. If you are only working with the tablet, you can also add the --no-gui option so that only the server is started on the PC.
 
-## Das Problem der Latenzen
+## The problem of latency
 
-Bei der Verwendung des Keboards mit einem Tablet kann es zu großen Latenzen kommen, die damit zusammenhängen, dass WLAN im Spiel ist. Diese Latenzen gibt es auch bei den Knob-Controllern, aber hier fallen sie nicht so stark auf.
+When using the keyboard with a tablet, there can be a lot of latency due to the fact that WiFi is involved. This latency also exists with the knob controllers, but it is not as noticeable here.
 
-Hier gibt es zwei Lösungsmöglichkeiten:
+There are two possible solutions:
 
-* Verwenden eines Monitors mit Touchscreen, der über UBS-C oder HDMI+USB direkt an den PC/Laptop angeschlossen wird. Auf diesem kann man dann das Open Stage Control Fenster schieben.
-
-* Anschließen des Tablets über USB an den PC/Laptop.
-
-Das ist so jedoch nicht von Open Stage Control vorgesehen, da die Verbindung nur über http geht und somit zwingend ein Netzwerk erfordert. Aber auf den Seiten des Herstellers gibt es einen Thread mit Lösungsmöglichkeiten: Run Touch Server via USB instead of Wifi (externer Link).
-Ich selbst habe erfolgreich die in diesem Thread erwähnte Software gnirehtet (externer Link) ausprobiert.
+* Use a monitor with a touchscreen
+  - that is connected directly to the PC/laptop via UBS-C or HDMI+USB.
+  - You can then slide the Open Stage Control window onto this.
+  - The advantage of this solution is that the power of the PC is also used for JavaScript.
+  - The downside is that every time you click on the touchscreen, your mouse cursor moves from the main screen to the touchscreen (you only have one mouse cursor).
+  - Another disadvantage is that in some cases you need more cables (HDMI+USB+power)
+  
+* Connect the tablet to the PC/laptop via USB.
+ - However, this is not what Open Stage Control is intended to do, as the connection is only possible via http and therefore requires a network.
+ - However, there is a thread on the manufacturer's website with possible solutions: Run Touch Server via USB instead of Wifi (external link).
+ - I myself have successfully tried the software mentioned in this thread gnirehtet (external link).
+ - The disadvantage of this solution is that USB debugging has to be enabled and a second software is necessary.
 
 ## Anpassungen in der Definitionsdatei
 
