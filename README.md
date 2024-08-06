@@ -8,14 +8,20 @@ VCV-CTL is a set of files that allow VCV Rack to be controlled with Open stage c
 
 VCV Rack is virtual modular synthesizer platform for Windows/Mac/Linux that simulates Eurorack modules.
 
+More information can be found on the Site of VCV Rack [https://vcvrack.com/](https://vcvrack.com/)
+
 ## What is Open Stage Control?
 
 Open Stage Control is software that can be used to create controls that control parameters in music applications.
 The OSC protocol is used for this.
 The special thing about it is that these elements are made available by an http server. The interface can be loaded from any browser, which allows (touch) operation via a tablet without installing any further software on this device.
 
-If you know VCV Rack and are looking for a controller, you have come to the right place.
-If you don't know VCV Rack but are still interested in electronic music, learn the basics of VCV Rack first.
+More information can be found on the Site of Open Stage Control [http://openstagecontrol.ammd.net/](http://openstagecontrol.ammd.net/)
+
+
+*If you know VCV Rack and are looking for a controller, you have come to the right place.*
+
+*If you don't know VCV Rack but are still interested in electronic music, learn the basics of VCV Rack first.*
 
 ## Parts of VCV-CTL
 
@@ -43,4 +49,4 @@ There are also free controllers that can be assigned to the new modules.
 - Keyboard for editing sequences in Open Stage Control.
 - Grid for editing drum patterns in Open Stage Control.
 
-
+For more information read the [documentation of VCV-CTL] (/doc/doc.md)
