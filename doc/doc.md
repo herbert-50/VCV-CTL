@@ -75,7 +75,7 @@ The patch contains several sections marked with texts. Each section uses a diffe
 - BGA VU to display the overall level (x)
 - HOT TUNA to display the notes played (x)
 - SCOPE to display the output wave (x)
-- 
+
 The modules marked with (x) are not necessarily needed, but are quite useful.
 
 ![](VCV-Module-SynthSection.jpg)
@@ -190,7 +190,7 @@ To save a setting, follow these steps
 - Set the R/W switch in the 8FACE module to "W".
 - Click the button and click on the desired slot
 - Set the R/W switch in the 8FACE module back to "R".
-- 
+  
 For more information read the 8FACE documentation.
 
 Once some presets have been created, they can be switched using the preset bar in Open Stage Control.
@@ -315,34 +315,34 @@ There are two possible solutions:
   - Another disadvantage is that in some cases you need more cables (HDMI+USB+power)
   
 * Connect the tablet to the PC/laptop via USB.
- - However, this is not what Open Stage Control is intended to do, as the connection is only possible via http and therefore requires a network.
- - However, there is a thread on the manufacturer's website with possible solutions: Run Touch Server via USB instead of Wifi (external link).
- - I myself have successfully tried the software mentioned in this thread gnirehtet (external link).
- - The disadvantage of this solution is that USB debugging has to be enabled and a second software is necessary.
+  - However, this is not what Open Stage Control is intended to do, as the connection is only possible via http and therefore requires a network.
+  - However, there is a thread on the manufacturer's website with possible solutions: Run Touch Server via USB instead of Wifi (external link).
+  - I myself have successfully tried the software mentioned in this thread gnirehtet (external link).
+  - The disadvantage of this solution is that USB debugging has to be enabled and a second software is necessary.
 
-## Anpassungen in der Definitionsdatei
+## Adjustments in the definition file
 
-Dazu ist Open Stage Control über das Menü oben links (1) in den Editmodus zu schalten. Alle zur Zeit sinnvollen Anpassungen können im Script des obersten Kontens "root/onCreate" vorgenommen werden. Hierfür sind (rudimäntäre) JavaScript Kenntnisse notwendig.
+To do this, Open Stage Control must be switched to edit mode via the menu at the top left (1). All adjustments that are currently useful can be made in the script of the topmost account "root/onCreate". (Rudimentary) JavaScript knowledge is required for this.
 
 ![](OpenStage-RootEdit.jpg)
 
-### Bezeichner ändern
+### Change identifier
 
-Die Bezeichner für Module und Parameter, die von VCV Rack über OSC geliefert werden, sind oft zu lang. Deshalb werden über die Funktionen
+The identifiers for modules and parameters provided by VCV Rack via OSC are often too long. Therefore, the functions
 
-transModName() - für Modulnamen
-transParamName() - für Parameternamen
+* transModName() - for module names 
+* transParamName() - for parameter names
 
-die Bezeichner auf Abkürzungen gemapped. Werden andere Module verwendet, dann sind diese Methoden auf die Module anzupassen, indem das Mapping erweitert wird.
+map the identifiers to abbreviations. If other modules are used, these methods must be adapted to the modules by extending the mapping.
 
-### Wartezeit beim Laden von Drum-Pattern
+### Waiting time when loading drum patterns
 
-Wie schon oben beschrieben wird beim Laden von Drum-Pattern mit einem Trick gearbeitet. Hier werden alle Kanäle nacheinander durchgeschaltet, so dass am Ende die Pattern von allen Kanälen über OSC an Open Stage Control gesendet werden. Da es dabei zu Synchronisationsproblemen kommt, wird mit einer Wartezeit zwischen den Durchläufen gearbeitet. Diese Wartezeit
+As already described above, a trick is used when loading drum patterns. All channels are switched through one after the other, so that in the end the patterns from all channels are sent to Open Stage Control via OSC. Since this can lead to synchronization problems, a waiting time is used between the runs. This waiting time
 
-* kann hochgesetzt werden, wenn das Laden von Pattern beschleunigt werden soll und das Tablet schnell genug ist, um die Daten zu verarbeiten.
-* kann herunter gesetzt werden, wenn ein langsames Tablet verwendet wird.
+* can be increased if pattern loading needs to be accelerated and the tablet is fast enough to process the data.
+* can be set lower if a slow tablet is used.
+  
+Basically, you should set the value as low as possible. If you notice that individual channels are missing when switching drum patterns in the grid, then this is a sign that the data is not being processed quickly enough.
+In this case, the value should be increased. The value is in the millisPerStep variable of the changeTrowaPattern() function and can be changed there.
 
-Grundsätzlich sollte man einen möglichst neidrigen Wert einstellen. Fällt auf, dass beim Umschalten von Drum-Pattern im Grid immer einzelne Kanäle fehlen, dann ist das ein Anzeichen dafür, dass die Daten nicht schnell genug verarbeitet werden. In diesem Fall ist der Wert hochzusetzen. Der Wert steht in der Variablen  millisPerStep der Funktion changeTrowaPattern() und kann dort verändert werden.
-
-*Nach allen Veränderungen sollte die Definitionsdatei gespeichert werden.*
-
+*After all changes, the definition file should be saved.*
