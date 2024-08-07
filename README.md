@@ -49,4 +49,6 @@ There are also free controllers that can be assigned to the new modules.
 - Keyboard for editing sequences in Open Stage Control.
 - Grid for editing drum patterns in Open Stage Control.
 
+See the videos on YouTube [Part1](https://www.youtube.com/watch?v=WREZaBIiI4o) and [Part2](https://www.youtube.com/watch?v=jalXA209Crc)
+
 For more information read the [documentation of VCV-CTL](/doc/doc.md)
